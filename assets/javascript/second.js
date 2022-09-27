@@ -6,15 +6,6 @@ if(city){
     getEvents(city);
     getCoordinates(city);
 
-<<<<<<< HEAD
-=======
-console.log('hello')
-const city=document.location.search.split('=')[1];
-console.log(city);
-if(city){
-    getEvents(city);
->>>>>>> 47dfd767a47a8c57e74d8a27428f95ac7a160fc4
-}
 //GETTING EVENTS FUNCTION IN LIST
 function getEvents(cityName){
     let eventUrl= `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
