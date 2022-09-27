@@ -1,8 +1,10 @@
-console.log('hello')
 const city=document.location.search.split('=')[1];
 const searchBtn= document.querySelector('search-btn');
-console.log(city);
+
+
 if(city){
+let cityTitle=document.getElementById('city-header');
+cityTitle.innerHTML= '...  ' + city;
     getEvents(city);
     getCoordinates(city);
 
@@ -17,14 +19,24 @@ function getEvents(cityName){
     })
 
     .then(function(data){
-     console.log(data)
-    //  let eventSection=document.getElementById('');
-    //  let eventsDisplay= document.createElement('p');
-    //  eventsDisplay.classList.add('events');
-    //  eventsDisplay.innerHTML(data);
-    //  eventSection.appendChild(eventsDisplay);
+     console.log(data._embedded.events);
+     displayEvents(data);
 })
 } 
+
+function displayEvents(data){
+            let eventBox= document.getElementById('events');
+            let eventsDisplay= document.createElement('li');
+            eventsDisplay.classList.add('eventsList');
+    
+           for(i=0; i<data.length; i++){
+            let eventEl= data[i]._embedded.events;
+            eventsDisplay.innerHTML= eventEl;
+            eventBox.appendChild(eventsDisplay);
+        } };
+
+
+
 //GETTING THE WEATHER FOR THE CITY
 function getCoordinates(cityName){
     const requestUrl= `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=21b94d9f597cdce5a2ddff64c6b85a82
@@ -52,14 +64,18 @@ function getCoordinates(cityName){
         })
         .then(function(data){
             console.log(data.list[0]);
-    //    for(let i=0; i<data.list.length; i+=20){
-    //         console.log(data.list[i]);   
-    
-    //     }
+        displayWeather(data.list [0]);
         })
      }
 
-<<<<<<< HEAD
+     function displayWeather(data){
+        let weatherBar=document.getElementById('weather');
+        let currentWeather= document.createElement('li');
+        currentWeather.classList.add('weather-bar');
+        currentWeather.innerHTML= data.list;
+        weatherBar.appendChild(currentWeather);
+    }
+
 // searchBtn.addEventListener('click', function(){
 //    const cityName=cityInput.value.trim();
 
@@ -70,22 +86,7 @@ function getCoordinates(cityName){
 //    }   // storeCities(cityName);
 //        getEvents(cityName);
 //        getCoordinates(cityName);
-//        getNews(cityName);
-=======
-searchBtn.addEventListener('click', function(event){
-   const cityName=cityInput.value.trim();
-   if (!cityName){
-    alert('Error');
-    //TODO display a nice message instead
-    return;
-   }
-   loadMain(cityName);
-       // storeCities(cityName);
-       getEvents(cityName);
-       getCoordinates(cityName);
-       getNews(cityName);
->>>>>>> 47dfd767a47a8c57e74d8a27428f95ac7a160fc4
-       
+//        getNews(cityName);       
 //     //    getNews(cityName);
 //    })
 
@@ -117,9 +118,7 @@ searchBtn.addEventListener('click', function(event){
 //     cities.push(cityName);
 //     localStorage.setItem(cities);
 // let cityList= document.querySelector('');
-<<<<<<< HEAD
 //
         
-=======
-// }
->>>>>>> 47dfd767a47a8c57e74d8a27428f95ac7a160fc4
+//
+    } 
