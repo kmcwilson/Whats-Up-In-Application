@@ -1,0 +1,83 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif ;
+}
+
+header {
+    padding: 20px 20px;
+    background-color: #687c9f;
+}
+
+header h1 {
+    display: inline;
+    font-size: 28px;
+    color: #feede0;
+}
+
+header input[type=text] {
+    padding: 10px;
+    margin-top: 2px;
+    position: absolute;
+    top: 15px;
+    right: 50px;
+}
+
+header button {
+    position: absolute;
+    top: 17px;
+    right: 9px;
+    color: #feede0;
+    height: 39.5px;
+    border: none;
+    background-color: #455c82;
+}
+#weather{
+    background-color: #798db0;
+    padding: 10px;
+    text-align:center;
+    border-style: groove;
+    border-color: #feede0;
+}
+.container{
+    display:flex;
+    justify-content: center;
+    align-items:center;
+}
+
+#events{
+    flex:1;
+    align-items:flex-end;
+    padding:10px;
+    width:250 px;
+    text-align:center;
+    border-style: double;
+    border-color:#455c82;
+    color:#455c82;
+    margin:20px;
+    justify-content: space-around;
+}
+#hotels{
+    flex:1;
+    align-items:flex-end;
+    padding:10px;
+    width:250 px;
+    text-align:center;
+    border-style: double;
+    border-color:#455c82;
+    color:#455c82;
+    margin:20px;
+    justify-content: space-around;
+}
+
+#city-header{
+    text-transform:capitalize;
+    font-family:Arial, Helvetica, sans-serif;
+    color:aliceblue;
+    font-style: italic;
+}
