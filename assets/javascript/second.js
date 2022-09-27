@@ -7,6 +7,8 @@ if (city) {
     cityTitle.innerHTML = '...  ' + city;
     getEvents(city);
     getCoordinates(city);
+    getNews(city);
+    getBars(city);
     // getHotels(city);
     //GETTING EVENTS FUNCTION IN LIST
     function getEvents(cityName) {
@@ -113,18 +115,32 @@ if (city) {
     //     //    getNews(cityName);
     //    })
 
-    // function getNews(cityName){
-    //     let newsUrl= `https://newsapi.org/v2/top-headlines?q=${cityName}&from=2022-09-01&sortBy=popularity&pageSize=4&language=en,fr&apiKey=61e1895e2972426480dd0d5bc3f32a8b`;
-    //     fetch(newsUrl)
+    function getNews(cityName){
+        let newsUrl= `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=3`;
+        fetch(newsUrl)
 
-    //     .then(function(response){
-    //         return response.json();
-    //     })
-    //     .then(function(data){
-    //         console.log(data)
-    //     })
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data)
+        })
 
-    // }
+    }
+
+    
+    function getBars(cityName){
+        let barsUrl= `https://api.openbrewerydb.org/breweries?per_page=5&by_city=${cityName}`;
+        fetch(barsUrl)
+
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data)
+        })
+
+    }
 
     // ''.addEventListener('click', function(){
     //     let originalHeader=document.getElementById('');
