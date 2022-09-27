@@ -10,5 +10,5 @@ placeholder
 
 
 ## Screenshot 
-![screenshot for challenge 4]()
+![screenshot for project 1]()
 
