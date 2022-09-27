@@ -1,7 +1,12 @@
+console.log('hello')
+const city=document.location.search.split('=')[1];
+const searchBtn= document.querySelector('search-btn');
+console.log(city);
+if(city){
+    getEvents(city);
+    getCoordinates(city);
 
-const cityInput= document.getElementById('input-city');
-const searchBtn=document.getElementById('search-btn');
-const cityName=cityInput.value.trim();
+}
 //GETTING EVENTS FUNCTION IN LIST
 function getEvents(cityName){
     let eventUrl= `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
@@ -47,41 +52,41 @@ function getCoordinates(cityName){
             return response.json();
         })
         .then(function(data){
-            console.log(data);
-       for(let i=0; i<data.list.length; i+=20){
-            console.log(data.list[i]);   
+            console.log(data.list[0]);
+    //    for(let i=0; i<data.list.length; i+=20){
+    //         console.log(data.list[i]);   
     
-            }
+    //     }
         })
      }
 
-searchBtn.addEventListener('click', function(){
-   const cityName=cityInput.value.trim();
-   if (!cityName){
-    alert('Error');
-    //TODO display a nice message instead
-    return;
-   }
-       // storeCities(cityName);
-       getEvents(cityName);
-       getCoordinates(cityName);
-       getNews(cityName);
+// searchBtn.addEventListener('click', function(){
+//    const cityName=cityInput.value.trim();
+
+//    if (!cityName){
+//     alert('Error');
+//     //TODO display a nice message instead
+//     return;
+//    }   // storeCities(cityName);
+//        getEvents(cityName);
+//        getCoordinates(cityName);
+//        getNews(cityName);
        
-    //    getNews(cityName);
-   })
+//     //    getNews(cityName);
+//    })
 
-function getNews(cityName){
-    let newsUrl= `https://newsapi.org/v2/top-headlines?q=${cityName}&from=2022-09-01&sortBy=popularity&pageSize=4&language=en,fr&apiKey=61e1895e2972426480dd0d5bc3f32a8b`;
-    fetch(newsUrl)
+// function getNews(cityName){
+//     let newsUrl= `https://newsapi.org/v2/top-headlines?q=${cityName}&from=2022-09-01&sortBy=popularity&pageSize=4&language=en,fr&apiKey=61e1895e2972426480dd0d5bc3f32a8b`;
+//     fetch(newsUrl)
 
-    .then(function(response){
-        return response.json();
-    })
-    .then(function(data){
-        console.log(data)
-    })
+//     .then(function(response){
+//         return response.json();
+//     })
+//     .then(function(data){
+//         console.log(data)
+//     })
     
-}
+// }
 
 // ''.addEventListener('click', function(){
 //     let originalHeader=document.getElementById('');
@@ -98,4 +103,5 @@ function getNews(cityName){
 //     cities.push(cityName);
 //     localStorage.setItem(cities);
 // let cityList= document.querySelector('');
-// }
+//
+        
