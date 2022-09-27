@@ -6,6 +6,14 @@ if(city){
     getEvents(city);
     getCoordinates(city);
 
+<<<<<<< HEAD
+=======
+console.log('hello')
+const city=document.location.search.split('=')[1];
+console.log(city);
+if(city){
+    getEvents(city);
+>>>>>>> 47dfd767a47a8c57e74d8a27428f95ac7a160fc4
 }
 //GETTING EVENTS FUNCTION IN LIST
 function getEvents(cityName){
@@ -60,6 +68,7 @@ function getCoordinates(cityName){
         })
      }
 
+<<<<<<< HEAD
 // searchBtn.addEventListener('click', function(){
 //    const cityName=cityInput.value.trim();
 
@@ -71,6 +80,20 @@ function getCoordinates(cityName){
 //        getEvents(cityName);
 //        getCoordinates(cityName);
 //        getNews(cityName);
+=======
+searchBtn.addEventListener('click', function(event){
+   const cityName=cityInput.value.trim();
+   if (!cityName){
+    alert('Error');
+    //TODO display a nice message instead
+    return;
+   }
+   loadMain(cityName);
+       // storeCities(cityName);
+       getEvents(cityName);
+       getCoordinates(cityName);
+       getNews(cityName);
+>>>>>>> 47dfd767a47a8c57e74d8a27428f95ac7a160fc4
        
 //     //    getNews(cityName);
 //    })
@@ -103,5 +126,9 @@ function getCoordinates(cityName){
 //     cities.push(cityName);
 //     localStorage.setItem(cities);
 // let cityList= document.querySelector('');
+<<<<<<< HEAD
 //
         
+=======
+// }
+>>>>>>> 47dfd767a47a8c57e74d8a27428f95ac7a160fc4
