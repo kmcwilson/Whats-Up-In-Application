@@ -1,7 +1,10 @@
 
-const cityInput= document.getElementById('input-city');
-const searchBtn=document.getElementById('search-btn');
-const cityName=cityInput.value.trim();
+console.log('hello')
+const city=document.location.search.split('=')[1];
+console.log(city);
+if(city){
+    getEvents(city);
+}
 //GETTING EVENTS FUNCTION IN LIST
 function getEvents(cityName){
     let eventUrl= `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
@@ -55,13 +58,14 @@ function getCoordinates(cityName){
         })
      }
 
-searchBtn.addEventListener('click', function(){
+searchBtn.addEventListener('click', function(event){
    const cityName=cityInput.value.trim();
    if (!cityName){
     alert('Error');
     //TODO display a nice message instead
     return;
    }
+   loadMain(cityName);
        // storeCities(cityName);
        getEvents(cityName);
        getCoordinates(cityName);
