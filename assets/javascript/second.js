@@ -73,7 +73,7 @@ if (city) {
         for(let i=0; i<data.length; i++){
         let currentWeather = document.createElement('li');
         currentWeather.classList.add('weather-bar');
-        currentWeather.textContent = data[i].list.weather;
+        currentWeather.textContent = data[i].name;
         weatherBar.appendChild(currentWeather);
     }
     }
@@ -95,7 +95,7 @@ if (city) {
     //    })
 
     function getNews(cityName){
-        let newsUrl= `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=3`;
+        let newsUrl= `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=4`;
         fetch(newsUrl)
 
         .then(function(response){
