@@ -50,7 +50,7 @@ header button {
     align-items:center;
 }
 
-#events{
+#event-box{
     flex:1;
     align-items:flex-end;
     padding:10px;
@@ -62,7 +62,8 @@ header button {
     margin:20px;
     justify-content: space-around;
 }
-#hotels{
+
+#news-box{
     flex:1;
     align-items:flex-end;
     padding:10px;

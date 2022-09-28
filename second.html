@@ -12,18 +12,23 @@
     <header class="header">
         <h1>What's up in<span id='city-header'></span></h1>
         <nav>
-            <input id="search-input" type="text" placeholder="What's up in" />
+          <ul id="storage-list"><input id="search-input" type="text" placeholder="What's up in" /></ul>
             <button id="search-btn" class="search-button"> Search </button>
         </nav>
     </header>
-    <h2>What's the weather</h2>
+    <h2 id="weather-title">What's the weather</h2>
     <ul id="weather"></ul>
     <secton class="container">
-<ul id="events">What to do..</ul>
-<ul id="hotels">Where to stay</ul>
+        <div id="event-box">
+            <h3 id="events-title">What to do..</h3>
+            <ul id="events"></ul>
+        </div>
+        <div id="news-box">
+            <h3 id="news-title">Where to stay</h3>
+            <ul id="news"></ul>
+        </div>
     </secton>
     <script src="assets\javascript\second.js"></script>
-
 
 </body>
 
