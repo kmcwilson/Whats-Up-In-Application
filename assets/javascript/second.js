@@ -1,4 +1,4 @@
-const city = document.location.search.split('=')[1];
+const city = decodeURI(document.location.search.split('=')[1]);
 const searchBtn = document.querySelector('search-btn');
 
 
