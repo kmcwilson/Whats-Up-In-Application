@@ -8,8 +8,6 @@ if (city) {
     getEvents(city);
     getCoordinates(city);
     getNews(city);
-    getBars(city);
-    // getHotels(city);
     //GETTING EVENTS FUNCTION IN LIST
     function getEvents(cityName) {
         let eventUrl = `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
@@ -27,7 +25,6 @@ if (city) {
     }
 
     function displayEvents(data) {
-        console.log('data:', data);
         let eventBox = document.getElementById('events');
         for (i = 0; i < data.length; i++) {
             let eventsDisplay = document.createElement('li');
@@ -73,33 +70,13 @@ if (city) {
 
     function displayWeather(data) {
         let weatherBar = document.getElementById('weather');
+        for(let i=0; i<data.length; i++){
         let currentWeather = document.createElement('li');
         currentWeather.classList.add('weather-bar');
-        currentWeather.innerHTML = data.list;
+        currentWeather.textContent = data[i].list.weather;
         weatherBar.appendChild(currentWeather);
     }
-
-    // function getHotels(cityName){
-    //     const options = {
-    //         method: 'GET',
-    //         headers: {
-    //             'X-RapidAPI-Key': '5bb4e737ebmsh6cefefe47bf6938p18bd1ejsncae2677adb5d',
-    //             'X-RapidAPI-Host': 'hotels4.p.rapidapi.com'
-    //         }
-    //     }
-    //     let hotelUrl= `https://hotels4.p.rapidapi.com/locations/v2/search?query=${cityName}&locale=en_US&currency=CAD${options}`;
-
-    //     fetch(hotelUrl)
-
-    //     .then(function(response){
-    //         return response.json();
-    //     })
-    //     .then(function(data){
-    //         console.log(data)
-    //     });
-    //     }
-    //  }
-
+    }
 
     // searchBtn.addEventListener('click', function(){
     //    const cityName=cityInput.value.trim();
@@ -108,11 +85,13 @@ if (city) {
     //     alert('Error');
     //     //TODO display a nice message instead
     //     return;
-    //    }   // storeCities(cityName);
+    //    } currentWeather  
+    
+    // storeCities(cityName);
     //        getEvents(cityName);
     //        getCoordinates(cityName);
     //        getNews(cityName);       
-    //     //    getNews(cityName);
+    //     //    getBars(cityName);
     //    })
 
     function getNews(cityName){
@@ -123,24 +102,43 @@ if (city) {
             return response.json();
         })
         .then(function(data){
-            console.log(data)
+            console.log(data);
+            displayNews(data.data);
         })
 
     }
+
+    function displayNews(data) {
+        console.log('data:', data);
+        let newsBox = document.getElementById('hotels');
+        for (i = 0; i < data.length; i++) {
+            let newsDisplay = document.createElement('li');
+            let newsLink= document.createElement('a');
+            newsLink.href=data[i].url;
+            newsLink.textContent= data[i].title;
+            newsLink.setAttribute('target','_blank');
+            newsDisplay.classList.add('newsList');
+            newsDisplay.appendChild(newsLink);
+            newsBox.appendChild(newsDisplay);
+        }
+    };
 
     
-    function getBars(cityName){
-        let barsUrl= `https://api.openbrewerydb.org/breweries?per_page=5&by_city=${cityName}`;
-        fetch(barsUrl)
+    // function getBars(cityName){
+    //     let barsUrl= `https://api.openbrewerydb.org/breweries?per_page=5&by_city=${cityName}`;
+    //     fetch(barsUrl)
 
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            console.log(data)
-        })
+    //     .then(function(response){
+    //         return response.json();
+    //     })
+    //     .then(function(data){
+    //         console.log(data)
+    //     })
 
-    }
+    // }
+
+    
+    
 
     // ''.addEventListener('click', function(){
     //     let originalHeader=document.getElementById('');
