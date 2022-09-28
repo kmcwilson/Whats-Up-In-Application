@@ -37,13 +37,13 @@ header button {
     border: none;
     background-color: #455c82;
 }
-#weather{
+/* #weather{
     background-color: #798db0;
     padding: 10px;
     text-align:center;
     border-style: groove;
     border-color: #feede0;
-}
+} */
 .container{
     display:flex;
     justify-content: center;
