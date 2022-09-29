@@ -25,7 +25,6 @@ if (city) {
             })
 
             .then(function (data) {
-                console.log(data._embedded.events);
                 displayEvents(data._embedded.events);
             })
     }
@@ -54,7 +53,6 @@ if (city) {
             .then(function (data) {
                 let lat = data[0].lat;
                 let lon = data[0].lon;
-                console.log(data);
                 searchWeather(lat, lon);
             })
     };
@@ -68,7 +66,6 @@ if (city) {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data.list[0]);
                 displayWeather(data.list[0]);
             })
     }
@@ -96,14 +93,12 @@ if (city) {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data);
                 displayNews(data.data);
             })
 
     }
 
     function displayNews(data) {
-        console.log('data:', data);
         for (i = 0; i < data.length; i++) {
             let newsDisplay = document.createElement('li');
             let newsLink = document.createElement('a');
