@@ -7,7 +7,7 @@ const cityTitle = document.getElementById('city-header');
 
 if (city) {
     // let cityTitle = document.getElementById('city-header');
-    cityTitle.textContent= '...  ' + city;
+    cityTitle.textContent = '...  ' + city;
     // const currentDate= moment().format('ddd MMM YYYY');
     // weatherBar.textContent=currentDate;
     getEvents(city);
@@ -74,16 +74,16 @@ if (city) {
         // let weatherIconEl= document.createElement('img');
         // let currentIcon= data.weather.icon;
         // let weatherIcon= weatherIconEl.setAttribute("src", `https://openweathermap.org/img/wn/${currentIcon}.png`);
-        const weatherIcon= data.weather[0].icon;
-        const weatherImg= document.createElement('img');
-        weatherImg.src= `https://openweathermap.org/img/wn/${weatherIcon}.png`
-            let currentWeather = document.createElement('li');
-            currentWeather.classList.add('weather-bar');
-            currentWeather.textContent = `Current Temp: ${data.main.temp} Feels like: ${data.main.feels_like} ${data.weather[0].description}`;
-            weatherBar.appendChild(currentWeather);
-            weatherBar.appendChild(weatherImg);
+        const weatherIcon = data.weather[0].icon;
+        const weatherImg = document.createElement('img');
+        weatherImg.src = `https://openweathermap.org/img/wn/${weatherIcon}.png`
+        let currentWeather = document.createElement('li');
+        currentWeather.classList.add('weather-bar');
+        currentWeather.textContent = `Current Temp: ${data.main.temp} Feels like: ${data.main.feels_like} ${data.weather[0].description}`;
+        weatherBar.appendChild(currentWeather);
+        weatherBar.appendChild(weatherImg);
 
-        }
+    }
 
     function getNews(cityName) {
         let newsUrl = `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=4`;
@@ -93,6 +93,7 @@ if (city) {
                 return response.json();
             })
             .then(function (data) {
+                console.log(data);
                 displayNews(data.data);
             })
 
@@ -102,12 +103,15 @@ if (city) {
         for (i = 0; i < data.length; i++) {
             let newsDisplay = document.createElement('li');
             let newsLink = document.createElement('a');
+            let newsDescription= document.createElement('li');
             newsLink.href = data[i].url;
             newsLink.textContent = data[i].title;
+            newsDescription.textContent=data[i].description;
             newsLink.setAttribute('target', '_blank');
             newsDisplay.classList.add('newsList');
             newsDisplay.appendChild(newsLink);
             newsBox.appendChild(newsDisplay);
+            newsBox.appendChild(newsDescription);
         }
     };
 
@@ -134,20 +138,21 @@ if (city) {
         getEvents(cityName);
         getCoordinates(cityName);
         getNews(cityName);
+        storeCities(cityName);
     })
 
 
-    function storeCities(cityName){
-        let cities=[];
+    function storeCities(cityName) {
+        let cities = [];
         cities.push(cityName);
         localStorage.setItem('cities', JSON.stringify(cities));
-    // let pastCities=document.querySelector('storage-list')
-    // let cityList= document.createElement('li');
-    // cityList.textContent=cityName;
-    // pastCities.appendChild(cityList);
-    // console.log(cities);
-}
-    
+        // let pastCities=document.querySelector('storage-list')
+        // let cityList= document.createElement('li');
+        // cityList.textContent=cityName;
+        // pastCities.appendChild(cityList);
+        // console.log(cities);
+    }
+
     // function renderCityList(){
     //     if(!cities.length){
     //         return;
