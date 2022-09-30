@@ -24,10 +24,11 @@ if (city) {
     function getEvents(cityName) {
         let eventUrl = `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
 
-};
+        fetch(eventUrl)
 
-    // searchBtn.addEventListener('click', function(){
-    //    const cityName=searchInput.value.trim();
+            .then(function (response) {
+                return response.json();
+            })
 
             .then(function (data) {
     //Calling the display events function to go through the array and display events
@@ -91,9 +92,7 @@ if (city) {
         weatherBar.appendChild(currentWeather);
         weatherBar.appendChild(weatherImg);
 
-    // function getBars(cityName){
-    //     let barsUrl= `https://api.openbrewerydb.org/breweries?per_page=5&by_city=${cityName}`;
-    //     fetch(barsUrl)
+    }
 
 //Using fetch to go through the news using the cityName input for the news and limiting it to 4
 
@@ -101,7 +100,13 @@ if (city) {
         let newsUrl = `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=4`;
         fetch(newsUrl)
 
-    // }
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                console.log(data);
+                displayNews(data.data);
+            })
 
     }
 //Looping through the news similarly as the displaying events function and displaying using the array that the data was placed into
@@ -178,4 +183,3 @@ function renderCityList(){
 
 renderCityList();
 }
-

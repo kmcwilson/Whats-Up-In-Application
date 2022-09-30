@@ -91,7 +91,7 @@ header button {
 
 .container{
     display:flex;
-    justify-content: centgiter;
+    justify-content: center;
     align-items:center;
 }
 
