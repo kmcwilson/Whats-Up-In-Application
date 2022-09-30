@@ -4,6 +4,10 @@ const weatherBar = document.getElementById('weather');
 const eventBox = document.getElementById('events');
 const newsBox = document.getElementById('news');
 const cityTitle = document.getElementById('city-header');
+const cityInput = document.getElementById('search-input')
+const cityName = cityInput.value.trim();
+const cities= JSON.parse(localStorage.getItem('cities'))|| [];
+
 
 if (city) {
     // let cityTitle = document.getElementById('city-header');
@@ -76,6 +80,7 @@ if (city) {
         // let weatherIcon= weatherIconEl.setAttribute("src", `https://openweathermap.org/img/wn/${currentIcon}.png`);
         const weatherIcon = data.weather[0].icon;
         const weatherImg = document.createElement('img');
+        weatherImg.classList.add('weather-img');
         weatherImg.src = `https://openweathermap.org/img/wn/${weatherIcon}.png`
         let currentWeather = document.createElement('li');
         currentWeather.classList.add('weather-bar');
@@ -115,54 +120,45 @@ if (city) {
         }
     };
 
-    searchButton.addEventListener('click', function (event) {
-        event.preventDefault();
-        const cityInput = document.getElementById('search-input')
-        const cityName = cityInput.value.trim();
-
-
+    searchButton.addEventListener('click', function () {
         if (!cityName) {
-            //TODO display a nice message instead
-            //change the title city in the bar to the new city searched
             return;
         }
-        else {
+        else{
             weatherBar.textContent = '';
             eventBox.textContent = '';
             newsBox.textContent = '';
             cityTitle.textContent = '';
         }
+   
 
         cityTitle.textContent = '...  ' + cityName;
-        //   storeCities(cityName);
         getEvents(cityName);
         getCoordinates(cityName);
         getNews(cityName);
-        storeCities(cityName);
     })
 
 
-    function storeCities(cityName) {
-        let cities = [];
+    function storeCities(cityName){
         cities.push(cityName);
-        localStorage.setItem('cities', JSON.stringify(cities));
-        // let pastCities=document.querySelector('storage-list')
-        // let cityList= document.createElement('li');
-        // cityList.textContent=cityName;
-        // pastCities.appendChild(cityList);
-        // console.log(cities);
-    }
+    localStorage.setItem("cities", JSON.stringify(cities));
+    };
+    
+    function renderCityList(){
+        let pastCities= document.getElementById('past-searches')
+        if(!cities.length){
+            return;
+        } 
+        // else if (cityName && cities|| newCityName && cities) {
 
-    // function renderCityList(){
-    //     if(!cities.length){
-    //         return;
-    //     }
-    //     for(let i=0; i<citieis.length;i++){
-    //         let cityItem=document.createElement('li');
-    //         cityItem.textContent=cities[i];
-    //         cityItem.classList.add('list-items');
-    //         pastCities.appendChild(cityItem);
-    //     }
-    // }
-    // renderCityList();
+        // }
+        for (let i=0; i<cities.length; i+=5){
+        let cityItem= document.createElement('li');
+        cityItem.textContent=cities[i];
+        cityItem.classList.add('list-items');
+        pastCities.appendChild(cityItem);
+     }
+    }
+    
+    renderCityList();
 }
