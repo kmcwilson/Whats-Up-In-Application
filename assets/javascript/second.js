@@ -1,181 +1,181 @@
+//This takes the input from the first page and uses it in order to call functions for that specific city
 const city = decodeURI(document.location.search.split('=')[1]);
-const searchBtn = document.getElementById('search-btn');
-const searchInput = document.getElementById('search-input');
+//Calling these items globally because they wil be used throughout several functions
+const searchButton = document.querySelector('.search-button');
+const weatherBar = document.getElementById('weather');
+const eventBox = document.getElementById('events');
+const newsBox = document.getElementById('news');
+const cityTitle = document.getElementById('city-header');
+const cityInput = document.getElementById('search-input');
+const cityName = cityInput.value.trim();
+//Creating an array for cities in order to use for localStorage
+const cities = JSON.parse(localStorage.getItem('cities')) || [];
 
-
+//if condition checks if a city was entered to enact these functions
+//All functions require a city name in order to function
 if (city) {
-    let cityTitle = document.getElementById('city-header');
-    cityTitle.innerHTML = '...  ' + city;
+    cityTitle.textContent = '...  ' + city;
     getEvents(city);
     getCoordinates(city);
     getNews(city);
+    storeCities(city);
+
+    //Using ticketmaster to call on events using the input parameter of cityName
+    function getEvents(cityName) {
+        let eventUrl = `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
 
 };
 
     // searchBtn.addEventListener('click', function(){
     //    const cityName=searchInput.value.trim();
 
-    //    if (!cityName){
-    //     alert('Error');
-    //     //TODO display a nice message instead
-    //     return;
-    //    } currentWeather  
+            .then(function (data) {
+    //Calling the display events function to go through the array and display events
+                displayEvents(data._embedded.events);
+            })
+    }
+// The function of displayEvents loops through the events array and creates li items for each event along with the link for the event
+    function displayEvents(data) {
+        for (i = 0; i < data.length; i++) {
+            let eventsDisplay = document.createElement('li');
+            let eventLink = document.createElement('a');
+            eventLink.href = data[i].url;
+            eventLink.textContent = data[i].name;
+//Setting the attribute of the link so that it opens a new tab when it is clicked
+            eventLink.setAttribute('target', '_blank');
+            eventsDisplay.classList.add('eventsList');
+            eventsDisplay.appendChild(eventLink);
+            eventBox.appendChild(eventsDisplay);
+        }
+    };
+    //Getting the weather for the specific city using the cityName input
+    function getCoordinates(cityName) {
+        const requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=aa6c01f4dfd1b379ce9333353fec65d7
+    `;
+        fetch(requestUrl)
 
-    // storeCities(cityName);
-    //        getEvents(cityName);
-    //        getCoordinates(cityName);
-    //        getNews(cityName);       
-    //     //    getBars(cityName);
-    //    })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+    //Using the latitude and longitude taken from the getCoordinates and using it in the search weather api
+                let lat = data[0].lat;
+                let lon = data[0].lon;
+                searchWeather(lat, lon);
+            })
+    };
+//This function is using the latitude and longitude of the cityName to show the weather forecast
+    function searchWeather(lat, lon) {
+        let secondUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&limit=1&appid=aa6c01f4dfd1b379ce9333353fec65d7
+    `;
+        fetch(secondUrl)
 
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                displayWeather(data.list[0]);
+            })
+    }
 
+//Displaying the weather from the application on the page using the array that it has been saved into
+    function displayWeather(data) {
+        const weatherIcon = data.weather[0].icon;
+        const weatherImg = document.createElement('img');
+        weatherImg.classList.add('weather-img');
+//Calling on the icon that is being shared through the openweather API
+        weatherImg.src = `https://openweathermap.org/img/wn/${weatherIcon}.png`
+        let currentWeather = document.createElement('li');
+        currentWeather.classList.add('weather-bar');
+        currentWeather.textContent = `Current Temp: ${data.main.temp} Feels like: ${data.main.feels_like} ${data.weather[0].description}`;
+        weatherBar.appendChild(currentWeather);
+        weatherBar.appendChild(weatherImg);
 
     // function getBars(cityName){
     //     let barsUrl= `https://api.openbrewerydb.org/breweries?per_page=5&by_city=${cityName}`;
     //     fetch(barsUrl)
 
-    //     .then(function(response){
-    //         return response.json();
-    //     })
-    //     .then(function(data){
-    //         console.log(data)
-    //     })
+//Using fetch to go through the news using the cityName input for the news and limiting it to 4
+
+    function getNews(cityName) {
+        let newsUrl = `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=4`;
+        fetch(newsUrl)
 
     // }
 
-
-
-
-    // ''.addEventListener('click', function(){
-    //     let originalHeader=document.getElementById('');
-    //     let newCity= document.createElement('div');
-    //     newCity.innerHTML(cityName);
-    //     originalHeader.appendChild(newCity);
-
-    //     getEvents(cityName);
-    // })
-
-    // function storeCities(cityName){
-    //     let cities=[];
-    //     let pastCities=document.querySelector('input')
-    //     cities.push(cityName);
-    //     localStorage.setItem('cities', JSON.stringify(cities));
-    // let cityList= document.createElement('');
-    //cityList.textContent=cityName;
-    //pastCities.appendChild(cityList);
-    //console.log(cities);
-    //
-    // function renderCityList(){
-    //     if(!cities.length){
-    //         return;
-    //     }
-    //     for(let i=0; i<citieis.length;i++){
-    //         let cityItem=document.createElement('li');
-    //         cityItem.textContent=cities[i];
-    //         cityItem.classList.add('list-items');
-    //         pastCities.appendChild(cityItem);
-    //     }
-    // }
-    // renderCityList();
-// 
-
-//GETTING EVENTS FUNCTION IN LIST
-function getEvents(cityName) {
-    let eventUrl = `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
-
-    fetch(eventUrl)
-
-        .then(function (response) {
-            return response.json();
-        })
-
-        .then(function (data) {
-            console.log(data._embedded.events);
-            displayEvents(data._embedded.events);
-        })
-}
-
-function getNews(cityName) {
-    let newsUrl = `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=3`;
-    fetch(newsUrl)
-
-        .then(function (response) {
-            console.log(newsUrl);
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            displayNews(data.data);
-        })
-
-}
-
-function displayNews(data) {
-    console.log('data:', data);
-    let newsBox = document.getElementById('hotels');
-    for (i = 0; i < data.length; i++) {
-        let newsDisplay = document.createElement('li');
-        let newsLink = document.createElement('a');
-        newsLink.href = data[i].url;
-        newsLink.textContent = data[i].title;
-        newsLink.setAttribute('target', '_blank');
-        newsDisplay.classList.add('newsList');
-        newsDisplay.appendChild(newsLink);
-        newsBox.appendChild(newsDisplay);
     }
-};
+//Looping through the news similarly as the displaying events function and displaying using the array that the data was placed into
+//Creating a list item for each of the data items as well as a link to take the user to the full story. There is a description attached to each link.
 
-function displayEvents(data) {
-    let eventBox = document.getElementById('events');
-    for (i = 0; i < data.length; i++) {
-        let eventsDisplay = document.createElement('li');
-        let eventLink = document.createElement('a');
-        eventLink.href = data[i].url;
-        eventLink.textContent = data[i].name;
-        eventLink.setAttribute('target', '_blank');
-        eventsDisplay.classList.add('eventsList');
-        eventsDisplay.appendChild(eventLink);
-        eventBox.appendChild(eventsDisplay);
-    }
-};
-
-//GETTING THE WEATHER FOR THE CITY
-function getCoordinates(cityName) {
-    const requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=21b94d9f597cdce5a2ddff64c6b85a82
-        `;
-    fetch(requestUrl)
-
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            let lat = data[0].lat;
-            let lon = data[0].lon;
-            console.log(data);
-            searchWeather(lat, lon);
-        })
-};
-
-function searchWeather(lat, lon) {
-    let secondUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=21b94d9f597cdce5a2ddff64c6b85a82
-        `;
-    fetch(secondUrl)
-
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data.list[0]);
-            displayWeather(data.list[0]);
-        })
-}
-
-function displayWeather(data) {
-    let weatherBar = document.getElementById('weather');
-    for (let i = 0; i < data.length; i++) {
-        let currentWeather = document.createElement('li');
-        currentWeather.classList.add('weather-bar');
-        currentWeather.textContent = data[i].list.weather;
-        weatherBar.appendChild(currentWeather);
+    function displayNews(data) {
+        for (i = 0; i < data.length; i++) {
+            let newsDisplay = document.createElement('li');
+            let newsLink = document.createElement('a');
+            let newsDescription = document.createElement('li');
+            newsLink.href = data[i].url;
+            newsLink.textContent = data[i].title;
+            newsDescription.textContent = data[i].description;
+//Setting the attribute of the link to take you to a new window when it is clicked.
+            newsLink.setAttribute('target', '_blank');
+            newsDisplay.classList.add('newsList');
+            newsDisplay.appendChild(newsLink);
+            newsBox.appendChild(newsDisplay);
+            newsBox.appendChild(newsDescription);
+        }
     };
+
+//Added a searchButton event listener to the search bar at the top right of the second page
+    searchButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const cityInput = document.getElementById('search-input')
+        const cityName = cityInput.value.trim();
+//If the cityName is empty, the function will stop
+        if (!cityName) {
+            return;
+        }
+//If there is an input, the elements will clear 
+        else{
+            weatherBar.textContent = '';
+            eventBox.textContent = '';
+            newsBox.textContent = '';
+            cityTitle.textContent = '';
+        }
+   
+//The functions are then called when the new city is input
+
+        cityTitle.textContent = '...  ' + cityName;
+        getEvents(cityName);
+        getCoordinates(cityName);
+        getNews(cityName);
+        storeCities(cityName);
+    })
+
+// storeCities is taking the empty array of cities and setting it into storage on a local device 
+
+function storeCities(cityName){
+    cities.push(cityName);
+localStorage.setItem("cities", JSON.stringify(cities));
+};
+
+//This function takes the set items in localStorage and begins to append them to a ul element on the page 
+function renderCityList(){
+    const pastCities= document.getElementById('past-searches');
+    if(!cities.length){
+        return;
+//QUESTION FOR ROMARIO
+// Can you ask how we can check if the same city is input and how we can stop the function?
+    }else if (cityName === cities) { return
+
+    }
+//The renderCityList loops through the array of cities and creates li elements and appends it to the ul of pastCities
+    for (let i=0; i<cities.length; i+=6){
+    let cityItem= document.createElement('li');
+    cityItem.textContent=cities[i];
+    cityItem.classList.add('list-items');
+    pastCities.appendChild(cityItem);
+ }
 }
+
+renderCityList();
+}
+
