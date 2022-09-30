@@ -10,12 +10,12 @@ const cities = JSON.parse(localStorage.getItem('cities')) || [];
 
 
 if (city) {
-    // let cityTitle = document.getElementById('city-header');
     cityTitle.textContent = '...  ' + city;
     getEvents(city);
     getCoordinates(city);
     getNews(city);
     storeCities(city);
+
     //GETTING EVENTS FUNCTION IN LIST
     function getEvents(cityName) {
         let eventUrl = `https://app.ticketmaster.com/discovery/v2/events.json?size=4&city=${cityName}&apikey=2xNO6r6cdtVrFZ7W6Hi5KIVTf2YQsmhQ`;
@@ -73,9 +73,6 @@ if (city) {
     }
 
     function displayWeather(data) {
-        // let weatherIconEl= document.createElement('img');
-        // let currentIcon= data.weather.icon;
-        // let weatherIcon= weatherIconEl.setAttribute("src", `https://openweathermap.org/img/wn/${currentIcon}.png`);
         const weatherIcon = data.weather[0].icon;
         const weatherImg = document.createElement('img');
         weatherImg.classList.add('weather-img');
@@ -138,34 +135,31 @@ if (city) {
         getEvents(cityName);
         getCoordinates(cityName);
         getNews(cityName);
+        storeCities(cityName);
     })
 
-// this function is only taking the first name on the landing page and it is not placing any other citynames within the list. It is also repeating names.
-// I am trying to call upon the new city input as well and it is not recognizing the new city either. 
-    function storeCities(cityName) {
-        let newCityInput=  document.getElementById('search-input');
-        let newCityName = newCityInput.value.trim(); 
-        cities.push(cityName, newCityName);
-        localStorage.setItem("cities", JSON.stringify(cities));
-    };
+function storeCities(cityName){
+    cities.push(cityName);
+localStorage.setItem("cities", JSON.stringify(cities));
+};
 
-    function renderCityList() {
-        let pastCities = document.getElementById('past-searches')
-        if (!cities.length) {
-            return;
-        }
-        else if (cityName && cities) { return
+function renderCityList(){
+    const pastCities= document.getElementById('past-searches');
+    if(!cities.length){
+        return;
+// Can you ask how we can check if the same city is input and how we can stop the function?
+    }else if (cityName === cities) { return
 
-        }
-    // Can we stop this function at 5 cities in the list within the array?
-        for (let i = 0; i < cities.length; i<=5) {
-            let cityItem = document.createElement('li');
-            cityItem.textContent = cities[i];
-            cityItem.classList.add('list-items');
-            pastCities.appendChild(cityItem);
-        }
     }
+    for (let i=0; i<cities.length; i+=6){
+    let cityItem= document.createElement('li');
+    cityItem.textContent=cities[i];
+    console.log(pastCities);
+    cityItem.classList.add('list-items');
+    pastCities.appendChild(cityItem);
+ }
+}
 
-    renderCityList();
+renderCityList();
 }
 
