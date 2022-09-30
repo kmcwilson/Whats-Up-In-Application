@@ -45,7 +45,7 @@ if (city) {
     };
     //GETTING THE WEATHER FOR THE CITY
     function getCoordinates(cityName) {
-        const requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=21b94d9f597cdce5a2ddff64c6b85a82
+        const requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=aa6c01f4dfd1b379ce9333353fec65d7
     `;
         fetch(requestUrl)
 
@@ -60,7 +60,7 @@ if (city) {
     };
 
     function searchWeather(lat, lon) {
-        let secondUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&limit=1&appid=21b94d9f597cdce5a2ddff64c6b85a82
+        let secondUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&limit=1&appid=aa6c01f4dfd1b379ce9333353fec65d7
     `;
         fetch(secondUrl)
 
@@ -157,7 +157,8 @@ if (city) {
         else if (cityName && cities) { return
 
         }
-        for (let i = 0; i < cities.length; i+=5) {
+    // Can we stop this function at 5 cities in the list within the array?
+        for (let i = 0; i < cities.length; i<=5) {
             let cityItem = document.createElement('li');
             cityItem.textContent = cities[i];
             cityItem.classList.add('list-items');
