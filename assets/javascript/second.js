@@ -6,14 +6,12 @@ const newsBox = document.getElementById('news');
 const cityTitle = document.getElementById('city-header');
 const cityInput = document.getElementById('search-input')
 const cityName = cityInput.value.trim();
-const cities= JSON.parse(localStorage.getItem('cities'))|| [];
+const cities = JSON.parse(localStorage.getItem('cities')) || [];
 
 
 if (city) {
     // let cityTitle = document.getElementById('city-header');
     cityTitle.textContent = '...  ' + city;
-    // const currentDate= moment().format('ddd MMM YYYY');
-    // weatherBar.textContent=currentDate;
     getEvents(city);
     getCoordinates(city);
     getNews(city);
@@ -108,10 +106,10 @@ if (city) {
         for (i = 0; i < data.length; i++) {
             let newsDisplay = document.createElement('li');
             let newsLink = document.createElement('a');
-            let newsDescription= document.createElement('li');
+            let newsDescription = document.createElement('li');
             newsLink.href = data[i].url;
             newsLink.textContent = data[i].title;
-            newsDescription.textContent=data[i].description;
+            newsDescription.textContent = data[i].description;
             newsLink.setAttribute('target', '_blank');
             newsDisplay.classList.add('newsList');
             newsDisplay.appendChild(newsLink);
@@ -120,17 +118,20 @@ if (city) {
         }
     };
 
-    searchButton.addEventListener('click', function () {
+    searchButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const cityInput = document.getElementById('search-input')
+        const cityName = cityInput.value.trim();
         if (!cityName) {
             return;
         }
-        else{
+        else {
             weatherBar.textContent = '';
             eventBox.textContent = '';
             newsBox.textContent = '';
             cityTitle.textContent = '';
         }
-   
+
 
         cityTitle.textContent = '...  ' + cityName;
         getEvents(cityName);
@@ -139,26 +140,26 @@ if (city) {
     })
 
 
-    function storeCities(cityName){
+    function storeCities(cityName) {
         cities.push(cityName);
-    localStorage.setItem("cities", JSON.stringify(cities));
+        localStorage.setItem("cities", JSON.stringify(cities));
     };
-    
-    function renderCityList(){
-        let pastCities= document.getElementById('past-searches')
-        if(!cities.length){
-            return;
-        } 
-        // else if (cityName && cities|| newCityName && cities) {
 
-        // }
-        for (let i=0; i<cities.length; i+=5){
-        let cityItem= document.createElement('li');
-        cityItem.textContent=cities[i];
-        cityItem.classList.add('list-items');
-        pastCities.appendChild(cityItem);
-     }
+    function renderCityList() {
+        let pastCities = document.getElementById('past-searches')
+        if (!cities.length) {
+            return;
+        }
+        else if (cityName && cities) { return
+
+        }
+        for (let i = 0; i < cities.length; i+=5) {
+            let cityItem = document.createElement('li');
+            cityItem.textContent = cities[i];
+            cityItem.classList.add('list-items');
+            pastCities.appendChild(cityItem);
+        }
     }
-    
+
     renderCityList();
 }
