@@ -6,14 +6,21 @@ const newsBox = document.getElementById('news');
 const cityTitle = document.getElementById('city-header');
 const cityInput = document.getElementById('search-input')
 const cityName = cityInput.value.trim();
+<<<<<<< HEAD
 const cities= JSON.parse(localStorage.getItem('cities'))|| [];
+=======
+const cities = JSON.parse(localStorage.getItem('cities')) || [];
+>>>>>>> 1822e06039b47631573dbbe4ffd61bba59847c80
 
 
 if (city) {
     // let cityTitle = document.getElementById('city-header');
     cityTitle.textContent = '...  ' + city;
+<<<<<<< HEAD
     // const currentDate= moment().format('ddd MMM YYYY');
     // weatherBar.textContent=currentDate;
+=======
+>>>>>>> 1822e06039b47631573dbbe4ffd61bba59847c80
     getEvents(city);
     getCoordinates(city);
     getNews(city);
@@ -108,10 +115,17 @@ if (city) {
         for (i = 0; i < data.length; i++) {
             let newsDisplay = document.createElement('li');
             let newsLink = document.createElement('a');
+<<<<<<< HEAD
             let newsDescription= document.createElement('li');
             newsLink.href = data[i].url;
             newsLink.textContent = data[i].title;
             newsDescription.textContent=data[i].description;
+=======
+            let newsDescription = document.createElement('li');
+            newsLink.href = data[i].url;
+            newsLink.textContent = data[i].title;
+            newsDescription.textContent = data[i].description;
+>>>>>>> 1822e06039b47631573dbbe4ffd61bba59847c80
             newsLink.setAttribute('target', '_blank');
             newsDisplay.classList.add('newsList');
             newsDisplay.appendChild(newsLink);
@@ -120,7 +134,14 @@ if (city) {
         }
     };
 
+<<<<<<< HEAD
     searchButton.addEventListener('click', function () {
+=======
+    searchButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        const cityInput = document.getElementById('search-input')
+        const cityName = cityInput.value.trim();
+>>>>>>> 1822e06039b47631573dbbe4ffd61bba59847c80
         if (!cityName) {
             return;
         }
@@ -132,6 +153,7 @@ if (city) {
         }
    
 
+
         cityTitle.textContent = '...  ' + cityName;
         getEvents(cityName);
         getCoordinates(cityName);
@@ -139,6 +161,7 @@ if (city) {
     })
 
 
+<<<<<<< HEAD
     function storeCities(cityName){
         cities.push(cityName);
     localStorage.setItem("cities", JSON.stringify(cities));
@@ -160,6 +183,29 @@ if (city) {
      }
     }
     
+=======
+    function storeCities(cityName) {
+        cities.push(cityName);
+        localStorage.setItem("cities", JSON.stringify(cities));
+    };
+
+    function renderCityList() {
+        let pastCities = document.getElementById('past-searches')
+        if (!cities.length) {
+            return;
+        }
+        else if (cityName && cities) { return
+
+        }
+        for (let i = 0; i < cities.length; i+=5) {
+            let cityItem = document.createElement('li');
+            cityItem.textContent = cities[i];
+            cityItem.classList.add('list-items');
+            pastCities.appendChild(cityItem);
+        }
+    }
+
+>>>>>>> 1822e06039b47631573dbbe4ffd61bba59847c80
     renderCityList();
 }
 
