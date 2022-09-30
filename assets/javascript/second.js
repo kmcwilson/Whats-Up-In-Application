@@ -4,7 +4,7 @@ const weatherBar = document.getElementById('weather');
 const eventBox = document.getElementById('events');
 const newsBox = document.getElementById('news');
 const cityTitle = document.getElementById('city-header');
-const cityInput = document.getElementById('search-input')
+const cityInput = document.getElementById('search-input');
 const cityName = cityInput.value.trim();
 const cities = JSON.parse(localStorage.getItem('cities')) || [];
 
@@ -141,7 +141,9 @@ if (city) {
 
 
     function storeCities(cityName) {
-        cities.push(cityName);
+        let newCityInput=  document.getElementById('search-input');
+        let newCityName = newCityInput.value.trim(); 
+        cities.push(cityName, newCityName);
         localStorage.setItem("cities", JSON.stringify(cities));
     };
 
