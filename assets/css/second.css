@@ -6,51 +6,164 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif ;
+    font-family: Arial, Helvetica, Oswald sans-serif ;
+    background-color: whitesmoke;
 }
 
 header {
+    font-family: 'Oswald', sans-serif;
     padding: 20px 20px;
-    background-color: #687c9f;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,67,121,1) 56%, rgba(0,212,255,1) 100%);
+    width: 100%;
+    position: fixed;
+    top: 0;
 }
 
 header h1 {
     display: inline;
-    font-size: 28px;
-    color: #feede0;
+    font-size: 25px;
+    color: whitesmoke;
 }
 
 header input[type=text] {
     padding: 10px;
     margin-top: 2px;
+    height: 40px;
     position: absolute;
     top: 15px;
-    right: 50px;
+    right: 60px;
+    border: 0;
+    color: whitesmoke;
+    background-color: rgba(9,67,121,0.3);
 }
 
 header button {
     position: absolute;
     top: 17px;
-    right: 9px;
+    right: 8px;
+    padding: 2px;
     color: #feede0;
     height: 39.5px;
     border: none;
-    background-color: #455c82;
+    background-color: rgb(0, 0, 0, 0.5);
+    cursor: pointer;
 }
-/* #weather{
-    background-color: #798db0;
-    padding: 10px;
-    text-align:center;
-    border-style: groove;
-    border-color: #feede0;
+
+.weather {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 600px;
+    margin-left: 30%;
+    margin-top: 100px;
+    margin-right: 30%;
+    background-image: linear-gradient(90deg, rgb(236, 222, 13, .1) 0%, rgba(89, 237, 15, .1) 36%,  rgb(8, 206, 78, .1) 60%, rgba(11, 221, 233, .1) 100%);
+    background-size: 400%;
+    animation: weather-animation 10s infinite alternate;
+    box-shadow: 3px 1px 10px 1px rgba(0, 0, 0, 0.2)
+}
+
+@keyframes weather-animation {
+    0%{background-position: left;}
+
+    100%{background-position: right;}
+
+}
+
+/* .weather-box {
+    background-color: red;
+    color: #455c82;
+    margin: 5px;
+    padding: 10px; 
+    border-right: solid;
+    border-right-width: 5px;
+    border-right-color: #076a9d;
 } */
+
+.weather-box h2 {
+    padding: 10px 10px 10px 15px;
+    font-size: 22px;
+    color: #455c82;
+    font-family: 'Oswald', sans-serif;
+
+}
+
 .container{
     display:flex;
     justify-content: center;
     align-items:center;
 }
 
-#event-box{
+.content-container{
+    flex:1;
+    background: linear-gradient(90deg, rgba(2,0,36,.2) 0%, rgba(9,67,121,.2) 36%, rgba(0,212,255,.2) 100%);
+    align-items: flex-end;
+    padding: 10px;
+    text-align: center;
+    border: solid 5px #076a9d;
+    color:#455c82;
+    margin: 35px;
+    justify-content: space-around;
+}
+
+.content-container li {
+    background-color: white;
+    margin: 15px;
+    padding: 5px;
+    justify-content: center;
+    list-style-type: none;
+    transition: height 1.0s;
+    -webkit-transition: height 1.0s;
+    text-align: center;
+    overflow: hidden;
+    
+}
+
+.content-container li:hover {
+    -ms-transform: scale(3); /* IE 9 */
+    -webkit-transform: scale(3); /* Safari 3-8 */
+    transform: scale(1.08); 
+    background-color: #455c82;
+    height: 180px;
+    transition: color white;
+    
+} 
+.content-container li:hover a{
+    color: white;
+    
+} 
+
+.content-container a {
+    color: #455c82;
+    text-decoration: none;
+    font-size: 22px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    transition: color white;
+}
+
+.content-container a:hover {
+    color: white;
+}
+
+.content-container a:visited:hover {
+    color: purple;
+}
+
+.content-container-header {
+    font-size: 22px;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    margin: 15px;
+    height: 35px;
+    background-color: #455c82;;
+}
+
+
+
+
+/* #event-box{
     flex:1;
     align-items:flex-end;
     padding:10px;
@@ -74,15 +187,16 @@ header button {
     color:#455c82;
     margin:20px;
     justify-content: space-around;
-}
+} */ */
 
-#city-header{
-    text-transform:capitalize;
+.city-header{
+    text-transform: uppercase;
     font-family:Arial, Helvetica, sans-serif;
     color:aliceblue;
     font-style: italic;
 }
 
+<<<<<<< HEAD
 .a-close{
     float: right;
     width: 1.5rem;
@@ -91,4 +205,14 @@ header button {
     cursor: pointer;
     border-radius: 0.25rem;
     background-color: lightgray;
+=======
+footer {
+    padding: 20px 20px;
+    background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,67,121,1) 36%, rgba(0,212,255,1) 100%);
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    color: white;
+>>>>>>> 8ee56e3baca4b29cdf3007d10d4ea674b61ca40b
 }
