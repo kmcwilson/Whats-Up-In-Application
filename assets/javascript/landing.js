@@ -8,7 +8,6 @@ searchBtn.addEventListener('click', function (event) {
     const cityName = cityInput.value.trim();
     //add in no input error message without an alert using bootstrap
     if (!cityName) {
-        // alert('Error');
         $('.alert').attr('style', "display: flex");
         //TODO display a nice message instead
 

@@ -196,16 +196,6 @@ header button {
     font-style: italic;
 }
 
-<<<<<<< HEAD
-.a-close{
-    float: right;
-    width: 1.5rem;
-    line-height: 1.5rem;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    background-color: lightgray;
-=======
 footer {
     padding: 20px 20px;
     background: rgb(2,0,36);
@@ -214,5 +204,4 @@ footer {
     position: fixed;
     width: 100%;
     color: white;
->>>>>>> 8ee56e3baca4b29cdf3007d10d4ea674b61ca40b
 }
