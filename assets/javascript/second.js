@@ -111,7 +111,7 @@ if (city) {
 //Using fetch to go through the news using the cityName input for the news and limiting it to 4
 
     function getNews(cityName) {
-        let newsUrl = `http://api.mediastack.com/v1/news?access_key=3a02bff89377038110c51afa9a144173&languages=en&keywords=${cityName}&limit=4`;
+        let newsUrl = `http://api.mediastack.com/v1/news?access_key=c3b88abad62dc4da8988f412bd2cf297&languages=en&keywords=${cityName}&limit=4`;
         fetch(newsUrl)
 
             .then(function (response) {
@@ -188,8 +188,8 @@ function renderCityList(){
 
     }
 //The renderCityList loops through the array of cities and creates li elements and appends it to the ul of pastCities
-    for (let i=0; i<cities.length; i+=6){
-    let cityItem= document.createElement('li');
+    for (let i=0; i<cities.length; i++){
+    let cityItem= document.createElement('button');
     cityItem.textContent=cities[i];
     cityItem.classList.add('list-items');
     pastCities.appendChild(cityItem);
