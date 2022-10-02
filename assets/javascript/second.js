@@ -46,10 +46,24 @@ if (city) {
             eventLink.setAttribute('target', '_blank');
             eventsDisplay.classList.add('eventsList');
             eventsDisplay.appendChild(eventLink);
+            eventsDisplay.addEventListener("mouseenter", (event) => {
+                displayDescription(event, data[i].pleaseNote)
+            })
+            eventsDisplay.addEventListener("mouseleave", (event) => {
+                console.log(event.target.children[1])
+            })
             eventBox.appendChild(eventsDisplay);
         }
     };
     //Getting the weather for the specific city using the cityName input
+    function displayDescription(event, description) {
+        var newEl = document.createElement("p")
+
+        newEl.textContent =description
+        event.target.appendChild(newEl)
+        console.log(description)
+    }
+
     function getCoordinates(cityName) {
         const requestUrl = `http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=aa6c01f4dfd1b379ce9333353fec65d7
     `;
@@ -125,6 +139,7 @@ if (city) {
             newsLink.setAttribute('target', '_blank');
             newsDisplay.classList.add('newsList');
             newsDisplay.appendChild(newsLink);
+            
             newsBox.appendChild(newsDisplay);
             newsBox.appendChild(newsDescription);
         }
@@ -184,3 +199,5 @@ function renderCityList(){
 
 renderCityList();
 }
+
+

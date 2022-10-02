@@ -162,7 +162,7 @@ float:right;
     
 }
 
-.content-container li:hover{
+.content-container li:hover {
     -ms-transform: scale(3); /* IE 9 */
     -webkit-transform: scale(3); /* Safari 3-8 */
     transform: scale(1.08); 
@@ -170,7 +170,11 @@ float:right;
     height: 180px;
     transition: color white;
     
-}
+} 
+.content-container li:hover a{
+    color: white;
+    
+} 
 
 .content-container a {
     color: #455c82;
@@ -226,8 +230,13 @@ footer {
     padding: 20px 20px;
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,67,121,1) 36%, rgba(0,212,255,1) 100%);
+<<<<<<< HEAD
     /* bottom: 0;
     position: absolute; */
+=======
+    bottom: 0;
+    position: fixed;
+>>>>>>> 1d719c2ea27c027766d39f7513bd8dbaac2c7689
     width: 100%;
     color: white;
 }
