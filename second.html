@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -12,16 +13,22 @@
     <link rel="stylesheet" href="./assets/css/second.css">
 </head>
     <header class="header">
-        <h1>WHAT'S UP IN<span id='city-header' class='city-header' ></span></h1>
+        <h1>WHAT'S UP IN<span id='city-header'></span></h1>
         <nav>
-        <ul id="storage-list"><input id="search-input" type="text" placeholder="What's up in" /></ul>
+     <input id="search-input" type="text" placeholder="What's up in" />
             <button class="search-button"> Search </button>
         </nav>
     </header>
-    <div class="weather" id="weather">
+    <div class="weather">
         <div class="weather-box">
             <h2 id="weather-title">What's the weather</h2>
             <ul id="weather"></ul>
+        </div>
+        <div class="past-cities">
+            <div class="searches-box">
+                <h2 id="search-title">Previous Searches</h2>
+                <ul id="past-searches"></ul>
+            </div>
         </div>
     </div>
     <secton class="container">

@@ -82,13 +82,14 @@ if (city) {
 //Displaying the weather from the application on the page using the array that it has been saved into
     function displayWeather(data) {
         const weatherIcon = data.weather[0].icon;
+        const weatherDescription= data.weather[0].description;
         const weatherImg = document.createElement('img');
         weatherImg.classList.add('weather-img');
 //Calling on the icon that is being shared through the openweather API
         weatherImg.src = `https://openweathermap.org/img/wn/${weatherIcon}.png`
         let currentWeather = document.createElement('li');
         currentWeather.classList.add('weather-bar');
-        currentWeather.textContent = `Current Temp: ${data.main.temp} Feels like: ${data.main.feels_like} ${data.weather[0].description}`;
+        currentWeather.textContent = `Current Temp: ${data.main.temp} Feels like: ${data.main.feels_like} ${weatherDescription}`;
         weatherBar.appendChild(currentWeather);
         weatherBar.appendChild(weatherImg);
 
@@ -166,18 +167,18 @@ localStorage.setItem("cities", JSON.stringify(cities));
 function renderCityList(){
     const pastCities= document.getElementById('past-searches');
     if(!cities.length){
-        return;
+        return; } 
+
 //QUESTION FOR ROMARIO
 // Can you ask how we can check if the same city is input and how we can stop the function?
-    }else if (cityName === cities) { return
-
-    }
 //The renderCityList loops through the array of cities and creates li elements and appends it to the ul of pastCities
     for (let i=0; i<cities.length; i++){
     let cityItem= document.createElement('button');
     cityItem.textContent=cities[i];
     cityItem.classList.add('list-items');
     pastCities.appendChild(cityItem);
+    if (i===5) { return
+    }
  }
 }
 
