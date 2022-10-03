@@ -108,7 +108,7 @@ function displayWeather(data) {
 //Using fetch to go through the news using the cityName input for the news and limiting it to 4
 
 function getNews(cityName) {
-    let newsUrl = `https://api.mediastack.com/v1/news?access_key=c3b88abad62dc4da8988f412bd2cf297&languages=en&keywords=${cityName}&limit=4`;
+    let newsUrl = `http://api.mediastack.com/v1/news?access_key=c3b88abad62dc4da8988f412bd2cf297&languages=en&keywords=${cityName}&limit=4`;
     fetch(newsUrl)
 
         .then(function (response) {
