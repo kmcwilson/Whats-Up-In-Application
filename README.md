@@ -12,6 +12,6 @@ When browsing the second page, the user can type in a new city into the search b
 
 
 ## Screenshot 
-![screenshot for project 1](assets\landing-page.jpg)
-![screenshot for project 1](assets\second-page.jpg)
+![landing-page](https://user-images.githubusercontent.com/110554091/193680876-6aa4db70-55df-4165-9f62-5061eae39c5f.jpg)
+![second-page](https://user-images.githubusercontent.com/110554091/193680852-6401adfd-799f-4fa2-ae57-95adf2015140.jpg)
 
