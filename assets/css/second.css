@@ -6,15 +6,15 @@
 }
 
 body {
-    font-family: Arial, Helvetica, Oswald sans-serif ;
+    font-family: Arial, Helvetica, Oswald sans-serif;
     background-color: whitesmoke;
 }
 
 header {
     font-family: 'Oswald', sans-serif;
     padding: 20px 20px;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,67,121,1) 56%, rgba(0,212,255,1) 100%);
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 67, 121, 1) 56%, rgba(0, 212, 255, 1) 100%);
     width: 100%;
     position: fixed;
     top: 0;
@@ -35,7 +35,7 @@ header input[type=text] {
     right: 60px;
     border: 0;
     color: whitesmoke;
-    background-color: rgba(9,67,121,0.3);
+    background-color: rgba(9, 67, 121, 0.3);
 }
 
 header button {
@@ -55,33 +55,37 @@ header button {
     height: 125px;
     width: 100%;
     margin-top: 100px;
-    background-image: linear-gradient(90deg, rgb(236, 222, 13, .1) 0%, rgba(89, 237, 15, .1) 36%,  rgb(8, 206, 78, .1) 60%, rgba(11, 221, 233, .1) 100%);
+    background-image: linear-gradient(90deg, rgb(236, 222, 13, .1) 0%, rgba(89, 237, 15, .1) 36%, rgb(8, 206, 78, .1) 60%, rgba(11, 221, 233, .1) 100%);
     background-size: 400%;
     animation: weather-animation 10s infinite alternate;
     box-shadow: 3px 1px 10px 1px rgba(0, 0, 0, 0.2)
 }
 
 @keyframes weather-animation {
-    0%{background-position: left;}
+    0% {
+        background-position: left;
+    }
 
-    100%{background-position: right;}
+    100% {
+        background-position: right;
+    }
 
 }
 
-.past-cities{
-    flex:1;
+.past-cities {
+    flex: 1;
     justify-content: flex-end;
-    padding-right:20px;
+    padding-right: 20px;
     border-left: #455c82;
 }
 
-#past-searches{
-float:right;
+#past-searches {
+    float: right;
 }
 
 
 .weather-box h2 {
-    margin-left:80px;
+    margin-left: 80px;
     padding: 10px 10px 10px 15px;
     text-align: left;
     font-size: 22px;
@@ -90,24 +94,24 @@ float:right;
 
 }
 
-.weather-bar{
+.weather-bar {
     margin-left: 80px;
     list-style-type: none;
     color: #455c82;
     font-family: 'Oswald', sans-serif;
-    padding-left:10px;
-    text-transform:uppercase;
+    padding-left: 10px;
+    text-transform: uppercase;
 
 }
 
 .weather-img {
-    width:30px;
-    height:30px;
+    width: 30px;
+    height: 30px;
     margin-left: 80px;
 }
 
 .past-cities h2 {
-    margin-left:10px;
+    margin-left: 10px;
     padding: 10px 10px 10px 15px;
     text-align: right;
     font-size: 22px;
@@ -117,19 +121,19 @@ float:right;
 }
 
 
-.container{
-    display:flex;
+.container {
+    display: flex;
     justify-content: center;
-    align-items:flex-start;
+    align-items: flex-start;
 }
 
-.content-container{
-    flex:1;
-    background: linear-gradient(90deg, rgba(2,0,36,.2) 0%, rgba(9,67,121,.2) 36%, rgba(0,212,255,.2) 100%);
+.content-container {
+    flex: 1;
+    background: linear-gradient(90deg, rgba(2, 0, 36, .2) 0%, rgba(9, 67, 121, .2) 36%, rgba(0, 212, 255, .2) 100%);
     padding: 10px;
     text-align: center;
     border: solid 5px #076a9d;
-    color:#455c82;
+    color: #455c82;
     margin: 35px;
     justify-content: space-around;
 }
@@ -144,23 +148,26 @@ float:right;
     -webkit-transition: height 1.0s;
     text-align: center;
     overflow: hidden;
-    
+
 }
 
 .content-container li:hover {
-    -ms-transform: scale(3); /* IE 9 */
-    -webkit-transform: scale(3); /* Safari 3-8 */
-    transform: scale(1.08); 
+    -ms-transform: scale(3);
+    /* IE 9 */
+    -webkit-transform: scale(3);
+    /* Safari 3-8 */
+    transform: scale(1.08);
     background-color: #455c82;
-    color:white;
+    color: white;
     height: 180px;
     transition: color white;
-    
-} 
-.content-container li:hover a{
+
+}
+
+.content-container li:hover a {
     color: white;
-    
-} 
+
+}
 
 .content-container a {
     color: #455c82;
@@ -185,37 +192,38 @@ float:right;
     font-family: 'Oswald', sans-serif;
     margin: 15px;
     height: 35px;
-    background-color: #455c82;;
+    background-color: #455c82;
+    ;
 }
 
 
 #city-header {
     text-transform: capitalize;
-    font-family:Arial, Helvetica, sans-serif;
-    color:aliceblue;
+    font-family: Arial, Helvetica, sans-serif;
+    color: aliceblue;
     font-style: italic;
 }
 
-.list-items{
+.list-items {
     text-transform: capitalize;
     background-color: #455c82;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
     color: white;
-    font-weight:bold;
+    font-weight: bold;
     justify-content: space-around;
-    padding: 8px; 
+    padding: 8px;
     border-radius: 5px;
 
 }
 
-.list-items:hover{
-    text-decoration:underline;
+.list-items:hover {
+    text-decoration: underline;
 }
 
 footer {
     padding: 20px 20px;
-    background: rgb(2,0,36);
-    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,67,121,1) 36%, rgba(0,212,255,1) 100%);
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 67, 121, 1) 36%, rgba(0, 212, 255, 1) 100%);
     bottom: 0;
     position: fixed;
     width: 100%;

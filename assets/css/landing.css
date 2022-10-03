@@ -60,12 +60,12 @@
     color: whitesmoke;
 }
 
-.enter-city button:hover{
-    background-color:black;
+.enter-city button:hover {
+    background-color: black;
     transform: scale(1.2);
 }
 
-.alert{
+.alert {
     color: whitesmoke;
     background: transparent;
     padding: 20px;
@@ -73,10 +73,10 @@
     font-size: 20px;
     background-color: rgba(179, 27, 42, 0.798);
     border: 100px;
-   max-width: 100%;
+    max-width: 100%;
     display: none;
     justify-content: center;
-    border-radius: 50px;    
+    border-radius: 50px;
     backdrop-filter: blur(4px) saturate(100%);
     margin-top: 30px;
 }
