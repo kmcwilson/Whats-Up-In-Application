@@ -46,13 +46,9 @@ if (city) {
             eventLink.setAttribute('target', '_blank');
             eventsDisplay.classList.add('eventsList');
             eventsDisplay.appendChild(eventLink);
-            eventsDisplay.addEventListener("mouseenter", (event) => {
-                displayDescription(event, data[i].pleaseNote)
-            })
-            eventsDisplay.addEventListener("mouseleave", (event) => {
-                console.log(event.target.children[1])
-            })
             eventBox.appendChild(eventsDisplay);
+            }
+           
         }
     };
     //Getting the weather for the specific city using the cityName input
@@ -119,7 +115,6 @@ if (city) {
                 return response.json();
             })
             .then(function (data) {
-                console.log(data);
                 displayNews(data.data);
             })
 
@@ -198,6 +193,6 @@ function renderCityList(){
 }
 
 renderCityList();
-}
+
 
 
