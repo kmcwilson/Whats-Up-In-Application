@@ -6,10 +6,10 @@ const weatherBar = document.getElementById('weather');
 const eventBox = document.getElementById('events');
 const newsBox = document.getElementById('news');
 const cityTitle = document.getElementById('city-header');
-const cityInput = document.getElementById('search-input');
-const cityName = cityInput.value.trim();
+let cityInput = document.getElementById('search-input');
+let cityName = cityInput.value.trim();
 //Creating an array for cities in order to use for localStorage
-const cities = JSON.parse(localStorage.getItem('cities')) || [];
+let cities = JSON.parse(localStorage.getItem('cities')) || [];
 
 //if condition checks if a city was entered to enact these functions
 //All functions require a city name in order to function
@@ -143,8 +143,9 @@ function displayNews(data) {
 //Added a searchButton event listener to the search bar at the top right of the second page
 searchButton.addEventListener('click', function (event) {
     event.preventDefault();
-    const cityInput = document.getElementById('search-input')
-    const cityName = cityInput.value.trim();
+    cityInput = document.getElementById('search-input')
+    cityName = cityInput.value.trim();
+    document.location.replace(`second.html?city=${cityName}`);
     //If the cityName is empty, the function will stop
     if (!cityName) {
         return;
@@ -169,7 +170,11 @@ searchButton.addEventListener('click', function (event) {
 // storeCities is taking the empty array of cities and setting it into storage on a local device 
 
 function storeCities(cityName) {
-    cities.push(cityName);
+//Using an includes method in order to check if a city name has been used more than once, then stopping the function if that is the case
+    if (cities.includes(cityName)) {
+        return
+    };
+    cities.unshift(cityName);
     localStorage.setItem("cities", JSON.stringify(cities));
 };
 
@@ -179,17 +184,29 @@ function renderCityList() {
     if (!cities.length) {
         return;
     }
-
+    let recentSearches = cities.slice(0, 5);
 
     // Looping through the newly created cities array and creating buttons based on the previous cities entered by the user
-    for (let i = 0; i < cities.length; i++) {
+    for (let i = 0; i < recentSearches.length; i++) {
         let cityItem = document.createElement('button');
-        cityItem.textContent = cities[i];
+        cityItem.textContent = recentSearches[i];
         cityItem.classList.add('list-items');
         pastCities.appendChild(cityItem);
-        if (i === 5) {
-            return
-        }
+// Setting the event listener on the buttons so the user is able to click for searching
+        cityItem.addEventListener('click', function () {
+            cityName = cityItem.textContent;
+            weatherBar.textContent = '';
+            eventBox.textContent = '';
+            newsBox.textContent = '';
+            cityTitle.textContent = '';
+
+            cityTitle.textContent = '...  ' + cityName;
+            getEvents(cityName);
+            getCoordinates(cityName);
+            getNews(cityName);
+            storeCities(cityName);
+
+        })
     }
 }
 
