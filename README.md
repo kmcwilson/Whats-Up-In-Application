@@ -8,7 +8,7 @@ When browsing the second page, the user can type in a new city into the search b
 
 ## Live Website
 
-[link to live website](https://kmcwilson.github.io/whats-up-in-application/)
+[link to live website](https://kmcwilson.github.io/Whats-Up-In-Application/)
 
 
 ## Screenshot 
